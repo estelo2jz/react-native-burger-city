@@ -4,6 +4,7 @@ import {Text, View, StyleSheet, Image, ImageBackground, Dimensions} from 'react-
 import { RadioGroup, RadioButton } from 'react-native-flexi-radio-button';
 
 import Input from '../components/Input';
+import Button from '../components/Button';
 
 const { width, height} = Dimensions.get('window');
 
@@ -55,6 +56,15 @@ const Login = ({params}) => {
             <Text style={styles.forgot}>Forgot password?</Text>
           </View>
         </View>
+        <View style={{ marginTop: 37, justifyContent: 'center', alignItems: 'center' }}>
+          <Button text="Login" />
+        </View>
+        <View style={styles.signup}>
+          <Text style={styles.signupText}>{signup}</Text>
+        </View>
+        <View style={styles.terms}>
+          <Text style={styles.termsText}>{terms}</Text>
+        </View>
       </ImageBackground>
     </View>
   )
@@ -104,6 +114,7 @@ const styles = StyleSheet.create({
     color: '#ffffff',
     fontFamily: 'MontserratBold',
     fontSize: 16,
+    textAlign: 'center'
   },
   input: {
     marginTop: 24,
@@ -128,6 +139,29 @@ const styles = StyleSheet.create({
     color: "#ffffff",
     fontFamily: 'MontserratBold',
     fontSize: 12,
+  },
+  signup: {
+    marginTop: 13,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  signupText: {
+    color: '#ff9f1c',
+    fontFamily: 'MontserratBold',
+    fontSize: 12,
+  },
+  terms: {
+    marginTop: 10,
+    marginRight: 80,
+    marginLeft: 80,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  termsText: {
+    color: '#ffffff',
+    fontFamily: 'MontserratBold',
+    fontSize: 10,
+    textAlign: 'center',
   }
 })
 
