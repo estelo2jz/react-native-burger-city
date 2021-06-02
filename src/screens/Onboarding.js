@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
-import { View, Text, Image, StyleSheet, Dimensions } from 'react-native';
+import { View, Text, Image, StyleSheet, Dimensions, Alert } from 'react-native';
+
+import Button from '../components/Button';
 
 import Swiper from 'react-native-swiper';
 
-const {width, height} = Dimensions.get('window');
+const { width, height } = Dimensions.get('window');
 
 class Onboarding extends Component {
   constructor(props) {
@@ -17,22 +19,42 @@ class Onboarding extends Component {
     };
   }
 
+  _btnClick = () => {
+    Alert.alert('Get start here!');
+  }
+
   render() {
     return (
       <View style={styles.container}>
-        <Swiper 
+        <Swiper
           autoplay={true}
           dot={<View style={styles.dot} />}
           activeDot={<View style={styles.activeDot} />}
         >
           {this.state.slides.map((slide) => {
             return (
-              <View>
+              <View key={slide.id}>
                 <Image source={slide.image} style={styles.image} />
               </View>
             )
           })}
         </Swiper>
+        <View style={styles.darkLayer} />
+        <View style={styles.logoContainer}>
+          {/* <Image source={require('../../assets/images/logo3.png')} style={styles.logo} /> */}
+          <Text style={styles.title}>Burger Joint</Text>
+        </View>
+        <View style={styles.textContainer}>
+          <Text style={styles.text}>Waked N Baked Burgers.</Text>
+        </View>
+        <View style={styles.button}>
+          <Button 
+            text="Get start here"
+            onPress={() => {
+              this._btnClick();
+            }}
+          />
+        </View>
       </View>
     );
   }
@@ -65,6 +87,50 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     marginLeft: 3,
     marginRight: 3,
+  },
+  logoContainer: {
+    width: width,
+    position: 'absolute',
+    top: 85,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  textContainer: {
+    width: 130,
+    position: 'absolute',
+    bottom: 180,
+    left: 30,
+    alignItems: 'center',
+    justifyContent: 'flex-start',
+  },
+  title: {
+    fontFamily: 'MontserratBold',
+    color: '#ffffff',
+    fontSize: 30,
+    fontWeight: '600',
+  },
+  text: {
+    fontFamily: 'MontserratBold',
+    color: '#ffffff',
+    fontSize: 25,
+    fontWeight: '600',
+  },
+  button: {
+    width: width,
+    alignItems: 'center',
+    alignContent: 'center',
+    justifyContent: 'center',
+    position: 'absolute',
+    bottom: 81,
+  },
+  darkLayer: {
+    position: 'absolute',
+    top: 0,
+    right: 0,
+    left: 0,
+    bottom: 0,
+    backgroundColor: '#000000',
+    opacity: 0.4,
   }
 })
 
