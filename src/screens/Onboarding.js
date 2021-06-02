@@ -41,7 +41,7 @@ class Onboarding extends Component {
         </Swiper>
         <View style={styles.darkLayer} />
         <View style={styles.logoContainer}>
-          {/* <Image source={require('../../assets/images/logo3.png')} style={styles.logo} /> */}
+          <Image source={require('../../assets/images/burger128.png')} style={styles.logo} />
           <Text style={styles.title}>Burger Joint</Text>
         </View>
         <View style={styles.textContainer}>
