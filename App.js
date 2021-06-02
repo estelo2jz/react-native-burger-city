@@ -1,8 +1,12 @@
 import { StatusBar } from 'expo-status-bar';
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import { ActivityIndicator, StyleSheet, Text, View } from 'react-native';
 
 import Onboarding from './src/screens/Onboarding';
+import Login from './src/screens/Login';
+import ForgetPassword from './src/screens/ForgetPassword';
+import Otp from './src/screens/Otp';
+import MobileNumber from './src/screens/MobileNumber';
 
 import * as Font from 'expo-font';
 
@@ -17,14 +21,14 @@ export default function App() {
     await Font.loadAsync(customFonts);
     setAssetsLoaded(true);
   }
-  
+
   useEffect(() => {
     _loadAssetsAsync();
   })
 
   return (
     <View style={styles.container}>
-      { assetsLoaded ? <Onboarding /> : <ActivityIndicator size="small" />}
+      { assetsLoaded ? <Login /> : <ActivityIndicator size="small" />}
     </View>
   );
 }
