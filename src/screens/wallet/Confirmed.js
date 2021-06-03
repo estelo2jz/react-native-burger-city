@@ -4,6 +4,11 @@ import Button from '../../components/Button';
 
 
 const ConfirmedScreen = ({ navigation, route }) => {
+  useLayoutEffect(() => {
+    navigation.setOptions({
+      headerRight: () => <HeaderRight onPress={() => { navigation.navigate('wallet') }} />
+    })
+  })
   return (
     <View style={styles.container}>
       <View

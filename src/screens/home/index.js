@@ -1,7 +1,16 @@
-import React from 'react';
-import { Text, View, StyleSheet } from 'react-native';
+import React, {useLayoutEffect} from 'react';
+import { Text, View, StyleSheet, Alert } from 'react-native';
 
-const HomeScreen = ({params}) => {
+import HeaderRight from '../../components/HeaderRight';
+
+const HomeScreen = ({navigation, route}) => {
+
+  useLayoutEffect(() => {
+    navigation.setOptions({
+      headerRight: () => <HeaderRight onPress={() => {navigation.navigate('wallet')}} />
+    })
+  })
+
   return (
     <View style={styles.container}>
       <View

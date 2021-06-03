@@ -1,7 +1,13 @@
-import React from 'react';
+import React, {useLayoutEffect} from 'react';
 import { Text, View, StyleSheet } from 'react-native';
+import HeaderRight from '../../components/HeaderRight';
 
-const TrackScreen = ({ params }) => {
+const TrackScreen = ({ navigation, route }) => {
+  useLayoutEffect(() => {
+    navigation.setOptions({
+      headerRight: () => <HeaderRight onPress={() => { navigation.navigate('wallet') }} />
+    })
+  })
   return (
     <View style={styles.container}>
       <View
