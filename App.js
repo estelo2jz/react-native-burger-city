@@ -2,11 +2,16 @@ import { StatusBar } from 'expo-status-bar';
 import React, { useState, useEffect } from 'react';
 import { ActivityIndicator, StyleSheet, Text, View } from 'react-native';
 
+import { NavigationContainer } from '@react-navigation/native';
+import TabNavigator from './src/navigation/TabNavigator';
+
 import Onboarding from './src/screens/Onboarding';
 import Login from './src/screens/Login';
 import ForgetPassword from './src/screens/ForgetPassword';
 import Otp from './src/screens/Otp';
 import MobileNumber from './src/screens/MobileNumber';
+
+import HomeScreen from './src/screens/home';
 
 import * as Font from 'expo-font';
 
@@ -26,11 +31,20 @@ export default function App() {
     _loadAssetsAsync();
   })
 
-  return (
-    <View style={styles.container}>
-      { assetsLoaded ? <Login /> : <ActivityIndicator size="small" />}
-    </View>
+  return assetsLoaded ? (
+    <NavigationContainer>
+      <StatusBar />
+      <TabNavigator />
+    </NavigationContainer>
+  ) : (
+    <ActivityIndicator size="small" />
   );
+
+  // return (
+  //   <View style={styles.container}>
+  //     { assetsLoaded ? <Login /> : <ActivityIndicator size="small" />}
+  //   </View>
+  // );
 }
 
 const styles = StyleSheet.create({
