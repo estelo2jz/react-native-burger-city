@@ -23,11 +23,10 @@ const PaymentScreen = ({ navigation, route }) => {
           alignItems: 'center'
         }}
       >
-
         <Text style={{ color: '#ff9f1c', fontSize: 22 }}>Order Payment Screen</Text>
       </View>
       <View style={{paddingTop: 20}}></View>
-      <Button 
+      <Button
         text="Go to Confirmed Screen" 
         onPress={() => {
           navigation.push('Confirmed');
