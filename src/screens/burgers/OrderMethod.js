@@ -14,20 +14,9 @@ const OrderMethod = ({ navigation, route }) => {
     })
   })
   return (
-    <View style={styles.container}>
-      <View
-        style={{
-          width: 250,
-          height: 100,
-          backgroundColor: '#000000',
-          justifyContent: 'center',
-          alignItems: 'center'
-        }}
-      >
-
-        <Text style={{ color: '#ff9f1c', fontSize: 22 }}>Burgers Screen</Text>
-      </View>
-    </View>
+    <Background>
+      
+    </Background>
   );
 };
 
