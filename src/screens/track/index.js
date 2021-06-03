@@ -1,11 +1,13 @@
 import React, {useLayoutEffect} from 'react';
 import { Text, View, StyleSheet } from 'react-native';
 import HeaderRight from '../../components/HeaderRight';
+import HeaderBack from '../../components/HeaderBack';
 
 const TrackScreen = ({ navigation, route }) => {
   useLayoutEffect(() => {
     navigation.setOptions({
-      headerRight: () => <HeaderRight onPress={() => { navigation.navigate('wallet') }} />
+      headerRight: () => <HeaderRight onPress={() => { navigation.navigate('wallet') }} />,
+      headerLeft: () => <HeaderBack onPress={() => { navigation.navigate('Home') }} />
     })
   })
   return (

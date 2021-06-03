@@ -1,12 +1,15 @@
-import React from 'react';
+import React, {useLayoutEffect} from 'react';
 import { Text, View, StyleSheet } from 'react-native';
 import Button from '../../components/Button';
+import HeaderRight from '../../components/HeaderRight';
+import HeaderBack from '../../components/HeaderBack';
 
 
 const ConfirmedScreen = ({ navigation, route }) => {
   useLayoutEffect(() => {
     navigation.setOptions({
-      headerRight: () => <HeaderRight onPress={() => { navigation.navigate('wallet') }} />
+      headerRight: () => <HeaderRight onPress={() => { navigation.navigate('wallet') }} />,
+      headerLeft: () => <HeaderBack onPress={() => { navigation.goBack() }} />
     })
   })
   return (
@@ -25,7 +28,7 @@ const ConfirmedScreen = ({ navigation, route }) => {
       </View>
       <View style={{ paddingTop: 20 }}></View>
       <Button
-        text="Go to Confirmed Screen"
+        text="Go to Success Screen"
         onPress={() => {
           navigation.push('Success');
         }}
