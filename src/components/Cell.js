@@ -5,7 +5,7 @@ const Cell = ({params, style, data, renderItem, onPress, icon}) => {
   return data ? (
     data.map((entry, index) => {
       return (
-        <TouchableOpacity style={styles.container} onPress={() => onPress(entry, index)} >
+        <TouchableOpacity key={index} style={styles.container} onPress={() => onPress(entry, index)} >
           <View style={styles.leftView}>
             {renderItem(entry, index)}
           </View>
