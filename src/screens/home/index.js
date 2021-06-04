@@ -102,7 +102,7 @@ const HomeScreen = ({ navigation, route }) => {
           })
         }
       </View>
-      <View style={{ marginTop: 22, marginLeft: 20 }}>
+      <View style={{ marginTop: 22, marginLeft: 20, height: 200 }}>
         <Text style={{ fontFamily: 'MontserratBold', fontSize: 20 }}>Best Offers</Text>
         <Carousel
         firstItem={1}
