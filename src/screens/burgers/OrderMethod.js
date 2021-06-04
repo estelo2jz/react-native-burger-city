@@ -6,6 +6,8 @@ import HeaderRight from '../../components/HeaderRight';
 import HeaderLanguageChange from '../../components/HeaderLanguageChange';
 import Title from '../../components/Title';
 import Cell from '../../components/Cell';
+import Button from '../../components/Button';
+import DeliveryAddress from './DeliveryAddress';
 
 const methods = [
   {
@@ -17,7 +19,7 @@ const methods = [
   },
   {
     id: 2,
-    name: 'Delevery',
+    name: 'Delivery',
     selected: true,
     icon: require('../../../assets/images/tick16.png'),
     activeIcon: require('../../../assets/images/tick-active.png'),
@@ -58,7 +60,17 @@ const OrderMethod = ({ navigation, route }) => {
   }
 
   const _onItemClick = (item, index) => {
-    Alert.alert(index);
+    let temp = [];
+    data.map((entry, idx) => {
+      if (idx ===index) {
+        entry.selected = true;
+        temp.push(entry);
+      } else {
+        entry.selected = false;
+        temp.push(entry)
+      }
+    });
+    setData(temp);x
   }
 
   return (
@@ -67,7 +79,9 @@ const OrderMethod = ({ navigation, route }) => {
         <Title title='Hello' subTitle="Please select your method" />
         <View style={{ marginTop: 8 }}>
           <Cell data={data} renderItem={_renderItem} onPress={_onItemClick} />
-          <Cell />
+        </View>
+        <View style={{ marginLeft: 50, marginRight: 20, marginTop: 160 }}>
+          <Button text="Proceed to Order" onPress={navigation.push('DeliveryAddresxsScreen')} />
         </View>
       </View>
     </Background>
