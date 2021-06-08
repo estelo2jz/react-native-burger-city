@@ -3,43 +3,40 @@ import { Text, View, StyleSheet, Alert } from 'react-native';
 
 import Background from '../../components/Background';
 import HeaderRight from '../../components/HeaderRight';
+import HeaderBack from '../../components/HeaderBack';
 import HeaderLanguageChange from '../../components/HeaderLanguageChange';
 import Title from '../../components/Title';
 import Cell from '../../components/Cell';
 import Button from '../../components/Button';
+import GroupButton from '../../components/GroupButton';
 
-const methods = [
+const addresses = [
   {
     id: 1,
-    name: 'In-Store',
+    name: 'No. 02,  6th Lane, Colombo 03',
     selected: false,
-    icon: require('../../../assets/images/tick16.png'),
-    activeIcon: require('../../../assets/images/tick-active.png'),
-  },
-  {
-    id: 2,
-    name: 'Delivery',
-    selected: true,
-    icon: require('../../../assets/images/tick16.png'),
-    activeIcon: require('../../../assets/images/tick-active.png'),
-  },
-  {
-    id: 3,
-    name: 'Drive Thru',
-    selected: false,
-    icon: require('../../../assets/images/tick16.png'),
-    activeIcon: require('../../../assets/images/tick-active.png'),
+    icon: require('../../../assets/images/edit16.png'),
   },
 ]
 
 const DeliveryAddress = ({ navigation, route }) => {
 
-  const [data, setData] = useState(methods);
+  const [data, setData] = useState(addresses);
 
   useLayoutEffect(() => {
     navigation.setOptions({
-      headerRight: () => <HeaderRight onPress={() => { navigation.navigate('wallet') }} />,
-      headerLeft: () => (<HeaderLanguageChange onPress={() => (Alert.alert('Do something'))} />)
+      headerRight: () => (
+        <HeaderRight 
+          onPress={() => 
+          { navigation.navigate('wallet')} } 
+        />
+      ),
+      headerLeft: () => (
+        <HeaderBack 
+          onPress={() => 
+            { navigation.goBack()} }
+        />
+      )
     })
   })
 
@@ -72,17 +69,51 @@ const DeliveryAddress = ({ navigation, route }) => {
     setData(temp);
   }
 
+  const buttons = [
+    {
+      activated: true,
+      text: 'Order Now',
+      onPress: () => {
+        
+      },
+    },
+    {
+      activated: false,
+      text: 'Order in Advance',
+      onPress: () => { 
+        navigation.push('DeliveryAddressConfirmedScreen')
+      },
+    }
+  ];
+
   return (
     <Background>
-      {/* <View style={styles.container}>
-        <Title title='Hello' subTitle="Please select your method" />
-        <View style={{ marginTop: 8 }}>
-          <Cell data={data} renderItem={_renderItem} onPress={_onItemClick} />
+      <View style={styles.container}>
+        <Title subTitle="To proceed, please confirm your delivery details" />
+        <GroupButton activeColor={'#ff9f1c'} buttons={buttons}>{buttons}</GroupButton>
+        <Title title="Delivery Address"></Title>
+        <Cell 
+          data={data} 
+          renderItem={_renderItem}
+          onPress={() => Alert.alert('Go to Change Address Screen')}
+        ></Cell>
+        <View style={{ marginLeft: 50, marginRight: 20, marginTop: 100 }}>
+          <Button 
+            text="Proceed to Order (Now)"
+            style={{ backgroundColor: '#000000' }}
+            onPress={
+              () => { navigation.push('MenuScreen') }
+            } 
+          />
+          <Button 
+            text="Change Address" 
+            style={styles.blackBtn}
+            onPress={
+              () => {Alert.alert("hello")}
+            } 
+          />
         </View>
-        <View style={{ marginLeft: 50, marginRight: 20, marginTop: 160 }}>
-          <Button text="Proceed to Order" />
-        </View>
-      </View> */}
+      </View>
     </Background>
   );
 };
@@ -90,6 +121,9 @@ const DeliveryAddress = ({ navigation, route }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+  },
+  blackBtn: {
+    backgroundColor: '#000000'
   }
 })
 
