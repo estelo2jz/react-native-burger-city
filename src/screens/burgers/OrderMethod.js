@@ -2,7 +2,7 @@ import React, {useLayoutEffect, useState} from 'react';
 import { Text, View, StyleSheet, Alert } from 'react-native';
 
 import Background from '../../components/Background';
-import HeaderRight from '../../components/HeaderRight'; 
+import HeaderRight from '../../components/HeaderRight';
 import HeaderLanguageChange from '../../components/HeaderLanguageChange';
 import Title from '../../components/Title';
 import Cell from '../../components/Cell';
@@ -70,7 +70,7 @@ const OrderMethod = ({ navigation, route }) => {
         temp.push(entry)
       }
     });
-    setData(temp);x
+    setData(temp);
   }
 
   return (
@@ -80,8 +80,8 @@ const OrderMethod = ({ navigation, route }) => {
         <View style={{ marginTop: 8 }}>
           <Cell data={data} renderItem={_renderItem} onPress={_onItemClick} />
         </View>
-        <View style={{ marginLeft: 50, marginRight: 20, marginTop: 160 }}>
-          <Button text="Proceed to Order" onPress={navigation.push('DeliveryAddresxsScreen')} />
+        <View style={{ marginLeft: 50, marginRight: 20, marginTop: 40 }}>
+          <Button text="Proceed to Order" onPress={() => navigation.push('DeliveryAddressScreen')} />
         </View>
       </View>
     </Background>
