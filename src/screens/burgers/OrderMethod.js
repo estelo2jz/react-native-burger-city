@@ -76,7 +76,7 @@ const OrderMethod = ({ navigation, route }) => {
   return (
     <Background>
       <View style={styles.container}>
-        <Title title='Hello' subTitle="Please select your method" />
+        <Title title='Order Method' subTitle="Please select your order method" />
         <View style={{ marginTop: 8 }}>
           <Cell data={data} renderItem={_renderItem} onPress={_onItemClick} />
         </View>
