@@ -113,7 +113,7 @@ const DeliveryAddressConfirmed = ({ navigation, route }) => {
               text="Proceed to Order (Now)"
               style={{ backgroundColor: '#000000' }}
               onPress={
-                () => { Alert.alert("hello") }
+                () => { navigation.push('MenuScreen') }
               }
             />
           </View>
