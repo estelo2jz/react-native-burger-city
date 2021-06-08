@@ -8,6 +8,7 @@ const GroupButton = ({params, activeColor, buttons, ...rest}) => {
         buttons.map((button, index) => {
           return (
             <TouchableOpacity 
+              key={index}
               onPress={button.onPress}
               style={{
                 flex: 1,
