@@ -18,6 +18,8 @@ const styles = StyleSheet.create({
     alignContent: 'center',
     borderRadius: 6,
     backgroundColor: '#ff9f1c',
+    marginTop: 10,
+    marginBottom: 0,
   },
   text: {
     fontFamily: 'MontserratRegular',
