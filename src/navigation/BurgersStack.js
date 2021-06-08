@@ -6,6 +6,8 @@ import DeliveryAddressScreen from '../screens/burgers/DeliveryAddress';
 import DeliveryAddressConfirmedScreen from '../screens/burgers/DeliveryAddressConfirmed';
 import MenuScreen from '../screens/burgers/Menu';
 import BurgersScreen from '../screens/burgers/Burgers';
+import SelectItemScreen from '../screens/burgers/SelectItem';
+import ChoicesScreen from '../screens/burgers/Choices';
 import HeaderTitle from '../components/HeaderTitle';
 
 const BurgersStack = ({ params }) => {
@@ -26,6 +28,12 @@ const BurgersStack = ({ params }) => {
         options={{ headerTitle: props => <HeaderTitle /> }}
       />
       <Stack.Screen name="BurgersScreen" component={BurgersScreen}
+        options={{ headerTitle: props => <HeaderTitle /> }}
+      />
+      <Stack.Screen name="SelectItemScreen" component={SelectItemScreen}
+        options={{ headerTitle: props => <HeaderTitle /> }}
+      />
+      <Stack.Screen name="ChoicesScreen" component={ChoicesScreen}
         options={{ headerTitle: props => <HeaderTitle /> }}
       />
     </Stack.Navigator>
