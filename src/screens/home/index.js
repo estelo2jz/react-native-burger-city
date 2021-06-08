@@ -42,16 +42,10 @@ const HomeScreen = ({ navigation, route }) => {
   ]
 
   const offers = [
-    { id: 1, image: require("../../../assets/images/burger/card1.jpeg") },
-    { id: 2, image: require("../../../assets/images/burger/card2.jpeg") },
-    { id: 3, image: require("../../../assets/images/burger/card3.jpeg") },
-    { id: 4, image: require("../../../assets/images/burger/card4.jpeg") },
-    { id: 5, image: require("../../../assets/images/burger/card5.jpeg") },
-    { id: 6, image: require("../../../assets/images/burger/card6.jpeg") },
-    { id: 7, image: require("../../../assets/images/burger/card7.jpeg") },
-    { id: 8, image: require("../../../assets/images/burger/card8.jpeg") },
-    { id: 9, image: require("../../../assets/images/burger/card9.jpeg") },
-    { id: 10, image: require("../../../assets/images/burger/ccard10.jpeg") },
+    { id: 1, image: require("../../../assets/images/meal1.png") },
+    { id: 1, image: require("../../../assets/images/meal2.png") },
+    { id: 1, image: require("../../../assets/images/meal3.png") },
+    { id: 1, image: require("../../../assets/images/meal4.png") },
 
   ]
 
@@ -102,16 +96,16 @@ const HomeScreen = ({ navigation, route }) => {
           })
         }
       </View>
-      <View style={{ marginTop: 22, marginLeft: 20, height: 200 }}>
+      <View style={{ marginTop: 22, marginLeft: 20, height: 100 }}>
         <Text style={{ fontFamily: 'MontserratBold', fontSize: 20 }}>Best Offers</Text>
         <Carousel
           firstItem={1}
           data={offers}
           renderItem={_renderItem}
           sliderWidth={width}
-          sliderHeight={120}
-          itemWidth={width}
-          itemHeight={120}
+          // sliderHeight={120}
+          itemWidth={100}
+          // itemHeight={120}
         >
 
         </Carousel>
