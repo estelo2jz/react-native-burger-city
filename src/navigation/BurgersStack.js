@@ -8,6 +8,7 @@ import MenuScreen from '../screens/burgers/Menu';
 import BurgersScreen from '../screens/burgers/Burgers';
 import SelectItemScreen from '../screens/burgers/SelectItem';
 import ChoicesScreen from '../screens/burgers/Choices';
+import AddToCartScreen from '../screens/burgers/AddToCart';
 import HeaderTitle from '../components/HeaderTitle';
 
 const BurgersStack = ({ params }) => {
@@ -34,6 +35,9 @@ const BurgersStack = ({ params }) => {
         options={{ headerTitle: props => <HeaderTitle /> }}
       />
       <Stack.Screen name="ChoicesScreen" component={ChoicesScreen}
+        options={{ headerTitle: props => <HeaderTitle /> }}
+      />
+      <Stack.Screen name="AddToCartScreen" component={AddToCartScreen}
         options={{ headerTitle: props => <HeaderTitle /> }}
       />
     </Stack.Navigator>

@@ -1,5 +1,5 @@
-import React, {useLayoutEffect, useState} from 'react';
-import { Text, View, StyleSheet, Alert } from 'react-native';
+import React, { useLayoutEffect, useState } from 'react';
+import { Text, View, StyleSheet, Alert, Image } from 'react-native';
 
 import Background from '../../components/Background';
 import HeaderRight from '../../components/HeaderRight';
@@ -27,7 +27,7 @@ const choices = [
   },
 ]
 
-const Choices = ({ navigation, route }) => {
+const AddToCart = ({ navigation, route }) => {
 
   const [data, setData] = useState(choices);
 
@@ -42,19 +42,19 @@ const Choices = ({ navigation, route }) => {
         <HeaderBack
           onPress={() => { navigation.goBack() }}
         />
-      )
-    })
+      ),
+    });
   })
 
-  const _renderItem=(item, index) => {
+  const _renderItem = (item, index) => {
     return (
-      <Text 
+      <Text
         key={item.id}
-        style={{ 
+        style={{
           fontFamily: 'MontserratBold',
           fontSize: 15,
           lineHeight: 20,
-         }}
+        }}
       >
         {item.name}
       </Text>
@@ -64,7 +64,7 @@ const Choices = ({ navigation, route }) => {
   const _onItemClick = (item, index) => {
     let temp = [];
     data.map((entry, idx) => {
-      if (idx ===index) {
+      if (idx === index) {
         entry.selected = true;
         temp.push(entry);
       } else {
@@ -78,13 +78,29 @@ const Choices = ({ navigation, route }) => {
   return (
     <Background>
       <View style={styles.container}>
-        <Title title='Order Method' subTitle="Please select your order Choices" />
+        <Title title='Cheese Burger Meal' subTitle="Please custumize your meal" />
+        <View style={{justifyContent: 'center', alignItems: 'center', marginBottom: 20}}>
+          <Image source={require('../../../assets/images/burger/meal1.png')} />
+        </View>
+        <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
+          <View style={{width: 140,  height: 48, marginLeft: 10, borderRadius: 6 }}>
+            <View style={{ height: 48 ,backgroundColor: '#ffffff' ,flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', alignContent: 'center'  }}>
+              <Image source={require('../../../assets/icons/add.png')} style={{marginLeft: 15}} />
+              <Text style={{ color: '#727cbe', fontFamily: 'MontserratBold', fontSize: 15, lineHeight: 20 }}>1</Text>
+              <Image source={require('../../../assets/icons/minus.png')} style={{ marginRight: 15 }} />
+            </View>
+          </View>
+          {/* width: 186 */}
+          <View style={{ width: 186, marginLeft: 20, marginRight: 20 }}>
+            <Button text="Add to Cart" onPress={() => {}} />
+          </View>
+        </View>
         <View style={{ marginTop: 8 }}>
           <Cell data={data} renderItem={_renderItem} onPress={_onItemClick} />
         </View>
-        <View style={{ marginLeft: 50, marginRight: 20, marginTop: 40 }}>
-          <Button text="Proceed to Add Cart" onPress={() => (navigation.push('AddToCartScreen'))} />
-        </View>
+        {/* <View style={{ marginLeft: 20, marginRight: 20, marginTop: 23, justifyContent: 'center', alignItems: 'center' }}>
+          <Button text="Proceed to Add Cart" onPress={() => Alert.alert("added to cart")} />
+        </View> */}
       </View>
     </Background>
   );
@@ -93,7 +109,7 @@ const Choices = ({ navigation, route }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-  }
+  },
 })
 
-export default Choices;
+export default AddToCart;

@@ -88,7 +88,7 @@ const SelectItem = ({ params, navigation, route }) => {
             title="Chicken Burgers"
             subTitle="Please select your burger type"
           />
-          <View style={{marginTop: 48, marginLeft: 30, marginRight: 20, marginBottom: 20}}>
+          <View style={{marginTop: 48, marginLeft: 30, marginRight: 20, marginBottom: 20, justifyContent: 'center', alignContent: 'center', alignItems: 'center'}}>
             <Image source={require('../../../assets/images/burger/burgerlogo.png')} />
           </View>
 
