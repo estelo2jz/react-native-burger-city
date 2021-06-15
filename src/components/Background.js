@@ -1,15 +1,17 @@
 import React from 'react'
-import { StyleSheet, Text, View, Dimensions } from 'react-native'
+import { StyleSheet, Text, View, Dimensions, ScrollView } from 'react-native'
 
 const {width, height} = Dimensions.get('window');
 
 const Background = ({params, children, style, ...rest}) => {
   return (
-    <View style={styles.container}>
-      <View style={styles.top_shadow}></View>
-        {children}
-      <View style={styles.bottom_shadow}></View>
-    </View>
+    <ScrollView>
+      <View style={styles.container}>
+        <View style={styles.top_shadow}></View>
+          {children}
+        <View style={styles.bottom_shadow}></View>
+      </View>
+    </ScrollView>
   )
 }
 
@@ -17,6 +19,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#f5f5f7',
+    height: '100%'
   },
   top_shadow: {
     position: 'absolute',
