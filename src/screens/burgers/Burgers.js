@@ -8,7 +8,7 @@ import Title from '../../components/Title';
 import Button from '../../components/Button';
 import Cell from '../../components/Cell';
 
-const {width, height} = Dimensions.get('window');
+const { width, height } = Dimensions.get('window');
 
 const Burgers = ({ params, navigation, route }) => {
 
@@ -68,30 +68,6 @@ const Burgers = ({ params, navigation, route }) => {
       icon: require("../../../assets/images/right-arrow.png"),
       isNew: true
     },
-    {
-      id: 6,
-      name: 'White Bread Burger',
-      price: '12.99 $',
-      logo: require("../../../assets/images/burger/burger5.png"),
-      icon: require("../../../assets/images/right-arrow.png"),
-      isNew: false
-    },
-    {
-      id: 7,
-      name: 'Ultimate Burger',
-      price: '35.99 $',
-      logo: require("../../../assets/images/burger/burger6.png"),
-      icon: require("../../../assets/images/right-arrow.png"),
-      isNew: false
-    },
-    {
-      id: 8,
-      name: 'If U Can Burger',
-      price: '25.99 $',
-      logo: require("../../../assets/images/burger/burger7.png"),
-      icon: require("../../../assets/images/right-arrow.png"),
-      isNew: true
-    },
 
   ]
 
@@ -102,16 +78,16 @@ const Burgers = ({ params, navigation, route }) => {
         justifyContent: 'center',
         alignItems: 'center',
       }}>
-        <View style={{flexDirection: 'row'}}>
-          <ImageBackground 
-            source={item.logo} 
-            style={{width: 60, height: 50, justifyContent: 'flex-start', alignItems: 'flex-end'}} 
+        <View style={{ flexDirection: 'row' }}>
+          <ImageBackground
+            source={item.logo}
+            style={{ width: 60, height: 50, justifyContent: 'flex-start', alignItems: 'flex-end' }}
           >
-            {item.isNew ? <Image source={require('../../../assets/images/new.png')} /> : <View/>}
+            {item.isNew ? <Image source={require('../../../assets/images/new.png')} /> : <View />}
           </ImageBackground>
         </View>
 
-        <View style={{marginLeft: 10}}>
+        <View style={{ marginLeft: 10 }}>
           <View>
             <Text style={{
               fontFamily: 'MontserratBold',
@@ -137,18 +113,16 @@ const Burgers = ({ params, navigation, route }) => {
   }
 
   return (
-    <ScrollView>
-      <Background>
-        <View style={styles.container}>
-          <Cell
-            style={styles.burgerCell}
-            data={burgers}
-            renderItem={_renderItem}
-            onPress={_onItemClick}
-          ></Cell>
-        </View>
-      </Background>
-    </ScrollView>
+    <Background>
+      <ScrollView style={styles.container}>
+        <Cell
+          style={styles.burgerCell}
+          data={burgers}
+          renderItem={_renderItem}
+          onPress={_onItemClick}
+        ></Cell>
+      </ScrollView>
+    </Background>
 
   )
 }
