@@ -28,7 +28,7 @@ const Menu = ({ params, navigation, route }) => {
     {
       id: 1,
       name: 'All values meals',
-      image:  require("../../../assets/images/meal1.png"),
+      image: require("../../../assets/images/meal1.png"),
     },
     {
       id: 2,
@@ -49,16 +49,16 @@ const Menu = ({ params, navigation, route }) => {
 
   const _renderCategory = (item, index) => {
     return (
-      <View 
-      key={index}
-        style={{ 
-          margin: 12, 
-          width: 160, 
-          height: 160, 
+      <View
+        key={index}
+        style={{
+          margin: 12,
+          width: 160,
+          height: 160,
           backgroundColor: '#ffffff',
           borderRadius: 6,
           shadowColor: '#000000',
-          shadowOffset: {width: 2, height: 2},
+          shadowOffset: { width: 2, height: 2 },
           shadowOpacity: 0.1,
           shadowRadius: 6,
           elevation: 5
@@ -66,7 +66,7 @@ const Menu = ({ params, navigation, route }) => {
         }}
       >
         <View style={{ justifyContent: 'center', alignContent: 'center', alignItems: 'center' }}>
-          <View style={{height: 100, justifyContent: 'center'}}>
+          <View style={{ height: 100, justifyContent: 'center' }}>
             <Image source={item.image}></Image>
           </View>
           <View style={{ width: 80, paddingTop: 8, alignItems: 'center' }}>
@@ -85,44 +85,42 @@ const Menu = ({ params, navigation, route }) => {
   }
 
   return (
-    <ScrollView>
-      <Background>
-        <View style={styles.container}>
-          <View style={styles.addressView}>
-            <Title 
-              title="Delivery Address" 
-              subTitle="No. 02, 6th Lane, Colomo 03"
-              titleColor="red"
-              style={{titleColor: '#ffffff'}}
-              subTitleColor="#FF9F1C"
-            ></Title>
-          </View>
-          <View style={styles.dateTimeView}>
-            <Title 
-              title="Delivery Date & Time" 
-              subTitle="No. 02, 6th Lane, Colomo 03"
-              titleColor="#ffffff"
-              subTitleColor="#FF9F1C"
-            ></Title>
-          </View>
-          <View style={styles.category}>
-            {
-              categories.map((category, index) => {
-                return _renderCategory(category, index);
-              })
-            }
-          </View>
-          <View style={{justifyContent: 'center', alignItems: 'center', marginBottom: 20}}>
-            <Button 
-              text='Secret Menu' 
-              onPress={() => {
-                navigation.push('BurgersScreen')
-              }} 
-            />
-          </View>
+    <Background>
+      <ScrollView style={styles.container}>
+        <View style={styles.addressView}>
+          <Title
+            title="Delivery Address"
+            subTitle="No. 02, 6th Lane, Colomo 03"
+            titleColor="red"
+            style={{ titleColor: '#ffffff' }}
+            subTitleColor="#FF9F1C"
+          ></Title>
         </View>
-      </Background>
-    </ScrollView>
+        <View style={styles.dateTimeView}>
+          <Title
+            title="Delivery Date & Time"
+            subTitle="No. 02, 6th Lane, Colomo 03"
+            titleColor="#ffffff"
+            subTitleColor="#FF9F1C"
+          ></Title>
+        </View>
+        <View style={styles.category}>
+          {
+            categories.map((category, index) => {
+              return _renderCategory(category, index);
+            })
+          }
+        </View>
+        <View style={{ justifyContent: 'center', alignItems: 'center', marginBottom: 20 }}>
+          <Button
+            text='Secret Menu'
+            onPress={() => {
+              navigation.push('BurgersScreen')
+            }}
+          />
+        </View>
+      </ScrollView>
+    </Background>
   )
 }
 
