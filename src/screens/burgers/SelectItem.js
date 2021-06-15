@@ -53,7 +53,7 @@ const SelectItem = ({ params, navigation, route }) => {
       <View style={{
         flexDirection: 'row',
         justifyContent: 'center',
-       alignItems: 'center',
+        alignItems: 'center',
       }}>
         <View style={{ marginLeft: 10 }}>
           <View>
@@ -81,26 +81,24 @@ const SelectItem = ({ params, navigation, route }) => {
   }
 
   return (
-    <ScrollView>
-      <Background>
-        <View style={styles.container}>
-          <Title 
-            title="Chicken Burgers"
-            subTitle="Please select your burger type"
-          />
-          <View style={{marginTop: 48, marginLeft: 30, marginRight: 20, marginBottom: 20, justifyContent: 'center', alignContent: 'center', alignItems: 'center'}}>
-            <Image source={require('../../../assets/images/burger/burgerlogo.png')} />
-          </View>
-
-          <Cell
-            style={styles.burgerCell}
-            data={burgers}
-            renderItem={_renderItem}
-            onPress={_onItemClick}
-          ></Cell>
+    <Background>
+      <ScrollView style={styles.container}>
+        <Title
+          title="Chicken Burgers"
+          subTitle="Please select your burger type"
+        />
+        <View style={{ marginTop: 48, marginLeft: 30, marginRight: 20, marginBottom: 20, justifyContent: 'center', alignContent: 'center', alignItems: 'center' }}>
+          <Image source={require('../../../assets/images/burger/burgerlogo.png')} />
         </View>
-      </Background>
-    </ScrollView>
+
+        <Cell
+          style={styles.burgerCell}
+          data={burgers}
+          renderItem={_renderItem}
+          onPress={_onItemClick}
+        ></Cell>
+      </ScrollView>
+    </Background>
 
   )
 }
@@ -111,7 +109,7 @@ const styles = StyleSheet.create({
     height: '100%',
   },
   burgerCell: {
-    height: 100,
+    height: '120%',
   }
 });
 
