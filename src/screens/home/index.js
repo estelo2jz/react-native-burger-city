@@ -46,7 +46,6 @@ const HomeScreen = ({ navigation, route }) => {
     { id: 1, image: require("../../../assets/images/meal2.png") },
     { id: 1, image: require("../../../assets/images/meal3.png") },
     { id: 1, image: require("../../../assets/images/meal4.png") },
-
   ]
 
   const _renderItem = ({ item, index }) => {
