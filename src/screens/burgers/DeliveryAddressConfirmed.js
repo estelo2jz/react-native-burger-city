@@ -82,42 +82,40 @@ const DeliveryAddressConfirmed = ({ navigation, route }) => {
   ];
 
   return (
-    <Background>
-      <ScrollView style={styles.container}>
-        <Title subTitle="To proceed, please confirm your delivery details" />
-        <GroupButton activeColor={'#ff9f1c'} buttons={buttons}>{buttons}</GroupButton>
-        <Title title="Delivery Address"></Title>
-        <Cell
-          data={data}
-          renderItem={_renderItem}
-          onPress={() => Alert.alert('Go to Change Address Screen')}
-        ></Cell>
-        <View style={{ marginLeft: 50, marginRight: 20, marginTop: 10 }}>
-          <Button
-            text="Change Address"
-            style={{ backgroundColor: '#000000' }}
-            onPress={
-              () => { Alert.alert("hello") }
-            }
-          />
-        </View>
-        <Title title="Delivery Date & Time" subTitle="PLease select delicry Data & Time"></Title>
-        <Cell
-          data={dateTime}
-          renderItem={_renderItem}
-          onPress={() => Alert.alert('Go to Change Address Screen')}
-        ></Cell>
-        <View style={{ marginLeft: 50, marginRight: 20, marginTop: 10, marginBottom: 50 }}>
-          <Button
-            text="Proceed to Order (Now)"
-            style={{ backgroundColor: '#000000' }}
-            onPress={
-              () => { navigation.push('MenuScreen') }
-            }
-          />
-        </View>
-      </ScrollView>
-    </Background>
+    <ScrollView style={styles.container}>
+      <Title subTitle="To proceed, please confirm your delivery details" />
+      <GroupButton activeColor={'#ff9f1c'} buttons={buttons}>{buttons}</GroupButton>
+      <Title title="Delivery Address"></Title>
+      <Cell
+        data={data}
+        renderItem={_renderItem}
+        onPress={() => Alert.alert('Go to Change Address Screen')}
+      ></Cell>
+      <View style={{ marginLeft: 50, marginRight: 20, marginTop: 10 }}>
+        <Button
+          text="Change Address"
+          style={{ backgroundColor: '#000000' }}
+          onPress={
+            () => { Alert.alert("hello") }
+          }
+        />
+      </View>
+      <Title title="Delivery Date & Time" subTitle="PLease select delicry Data & Time"></Title>
+      <Cell
+        data={dateTime}
+        renderItem={_renderItem}
+        onPress={() => Alert.alert('Go to Change Address Screen')}
+      ></Cell>
+      <View style={{ marginLeft: 50, marginRight: 20, marginTop: 10, marginBottom: 50 }}>
+        <Button
+          text="Proceed to Order (Now)"
+          style={{ backgroundColor: '#000000' }}
+          onPress={
+            () => { navigation.push('MenuScreen') }
+          }
+        />
+      </View>
+    </ScrollView>
   );
 };
 
