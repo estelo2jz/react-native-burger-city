@@ -68,43 +68,41 @@ const MainItems = ({ navigation, route }) => {
   }
 
   return (
-    <Background>
-      <ScrollView style={styles.container}>
+    <ScrollView style={styles.container}>
 
-        <View style={styles.totalView}>
-          <View style={styles.textView}>
-            <Text style={styles.totalText}>Sub Total (1 Item)</Text>
-            <Text style={styles.priceText}>$ 13.99</Text>
-          </View>
+      <View style={styles.totalView}>
+        <View style={styles.textView}>
+          <Text style={styles.totalText}>Sub Total (1 Item)</Text>
+          <Text style={styles.priceText}>$ 13.99</Text>
         </View>
+      </View>
 
-        <Card />
+      <Card />
 
-        <Title
-          title="Includes"
+      <Title
+        title="Includes"
+      />
+      <View style={{ marginTop: 8 }}>
+        <Cell
+          data={includes}
+          renderItem={_renderItem}
+          onPress={_onItemClick}
         />
-        <View style={{ marginTop: 8 }}>
-          <Cell
-            data={includes}
-            renderItem={_renderItem}
-            onPress={_onItemClick}
-          />
-        </View>
-        <Title
-          title="Condiments"
+      </View>
+      <Title
+        title="Condiments"
+      />
+      <View style={{ marginTop: 8 }}>
+        <Cell
+          data={condiments}
+          renderItem={_renderItem}
+          onPress={_onItemClick}
         />
-        <View style={{ marginTop: 8 }}>
-          <Cell
-            data={condiments}
-            renderItem={_renderItem}
-            onPress={_onItemClick}
-          />
-        </View>
-        <View style={{ marginLeft: 20, marginRight: 20, marginTop: 20, marginBottom: 20, justifyContent: 'center', alignItems: 'center' }}>
-          <Button text="Check Out" onPress={() => { navigation.push('FullItemsScreen') }} />
-        </View>
-      </ScrollView>
-    </Background>
+      </View>
+      <View style={{ marginLeft: 20, marginRight: 20, marginTop: 20, marginBottom: 20, justifyContent: 'center', alignItems: 'center' }}>
+        <Button text="Check Out" onPress={() => { navigation.push('FullItemsScreen') }} />
+      </View>
+    </ScrollView>
   );
 };
 
