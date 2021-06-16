@@ -85,42 +85,40 @@ const Menu = ({ params, navigation, route }) => {
   }
 
   return (
-    <Background>
-      <ScrollView style={styles.container}>
-        <View style={styles.addressView}>
-          <Title
-            title="Delivery Address"
-            subTitle="No. 02, 6th Lane, Colomo 03"
-            titleColor="red"
-            style={{ titleColor: '#ffffff' }}
-            subTitleColor="#FF9F1C"
-          ></Title>
-        </View>
-        <View style={styles.dateTimeView}>
-          <Title
-            title="Delivery Date & Time"
-            subTitle="No. 02, 6th Lane, Colomo 03"
-            titleColor="#ffffff"
-            subTitleColor="#FF9F1C"
-          ></Title>
-        </View>
-        <View style={styles.category}>
-          {
-            categories.map((category, index) => {
-              return _renderCategory(category, index);
-            })
-          }
-        </View>
-        <View style={{ justifyContent: 'center', alignItems: 'center', marginBottom: 20 }}>
-          <Button
-            text='Secret Menu'
-            onPress={() => {
-              navigation.push('BurgersScreen')
-            }}
-          />
-        </View>
-      </ScrollView>
-    </Background>
+    <ScrollView style={styles.container}>
+      <View style={styles.addressView}>
+        <Title
+          title="Delivery Address"
+          subTitle="No. 02, 6th Lane, Colomo 03"
+          titleColor="red"
+          style={{ titleColor: '#ffffff' }}
+          subTitleColor="#FF9F1C"
+        ></Title>
+      </View>
+      <View style={styles.dateTimeView}>
+        <Title
+          title="Delivery Date & Time"
+          subTitle="No. 02, 6th Lane, Colomo 03"
+          titleColor="#ffffff"
+          subTitleColor="#FF9F1C"
+        ></Title>
+      </View>
+      <View style={styles.category}>
+        {
+          categories.map((category, index) => {
+            return _renderCategory(category, index);
+          })
+        }
+      </View>
+      <View style={{ justifyContent: 'center', alignItems: 'center', marginBottom: 20 }}>
+        <Button
+          text='Secret Menu'
+          onPress={() => {
+            navigation.push('BurgersScreen')
+          }}
+        />
+      </View>
+    </ScrollView>
   )
 }
 
