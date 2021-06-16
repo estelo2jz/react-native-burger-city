@@ -1,5 +1,6 @@
 import React, {useLayoutEffect, useState} from 'react';
-import { Text, View, StyleSheet, ScrollView, Modal, Alert, Image, TouchableOpacity } from 'react-native';
+import { Text, View, StyleSheet, ScrollView, Alert, Image, TouchableOpacity } from 'react-native';
+import Modal from 'react-native-modal';
 import Button from '../../components/Button';
 import HeaderRight from '../../components/HeaderRight';
 import HeaderBack from '../../components/HeaderBack';
@@ -50,22 +51,31 @@ const ConfirmedScreen = ({ navigation, route }) => {
           </Text>
         </View>
         <View style={{ justifyContent: 'center', alignItems: 'center', alignContent: 'center', marginTop: 40, marginBottom: 30}}>
-          <Button style={{ flex: 1, marginRight: 5,}} text="Track your Order" onPress={() => {}}></Button>
+          <Button style={{ flex: 1, marginRight: 5,}} text="Track your Order" onPress={() => {
+            navigation.navigate('track');
+          }}></Button>
           <Button style={{ flex: 1, backgroundColor: '#000000', marginLeft: 5}} text="Confirm" onPress={() => {
             setModalVisible(true);
           }}></Button>
         </View>
         <Modal visible={modalVisible} animationType="slide" transparent={true}>
           <View style={styles.centeredView}>
+            <View style={{height: 30}}>
+              <View style={styles.modalCircle}></View>
+            </View>
             <View style={styles.modalView}>
-              <Image source={require('../../../assets/images/cola24.png')} />
-              <Text>Congratulation!</Text>
-              <Text>Thanks for your payment! You have won a Free Coca-cola.</Text>
-              <TouchableOpacity style={styles.modalButton} onPress={() => {
-                setModalVisible(false);
-              }}>
-                <Text style={styles.textStyle}>OK</Text>
-              </TouchableOpacity>
+              <View style={styles.modalView2}>
+                <Image style={{margin: 20}} source={require('../../../assets/images/cola64.png')} />
+                <Text style={styles.modalTitle}>Congratulation!</Text>
+                <View style={{marginLeft: 40, marginRight: 40, marginBottom: 20, marginTop: 10}}>
+                  <Text style={styles.modalDesc}>Thanks for your payment! You have won a Free Coca-cola.</Text>
+                </View>
+                <TouchableOpacity style={styles.modalButton} onPress={() => {
+                  setModalVisible(false);
+                }}>
+                  <Text style={styles.textStyle}>OK</Text>
+                </TouchableOpacity>
+              </View>
             </View>
           </View>
         </Modal>
@@ -81,10 +91,10 @@ const styles = StyleSheet.create({
     
   },
   addressView: {
-    backgroundColor: '#ffffff',
+    backgroundColor: '#d9d9d9',
     height: 157,
     borderWidth: 1,
-    borderColor: "thistle",
+    borderColor: "thistle", 
     borderRadius: 50,
     margin: 20,
 
@@ -102,7 +112,55 @@ const styles = StyleSheet.create({
   },
   modalView: {
     margin: 20,
-    backgroundColor: 'green',
+    backgroundColor: 'transparent',
+    borderRadius: 10,
+    alignItems: 'center',
+    shadowColor: '#000',
+    shadowOffset: {width: 0, height: 2},
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 5,
+  },
+  modalView2: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: 'white',
+    borderRadius: 10,
+    paddingBottom: 40,
+  },
+  modalTitle: {
+    color: '#000000',
+    fontFamily: 'MontserratBold',
+    fontSize: 15,
+    lineHeight: 18,
+  },
+  modalDesc: {
+    color: '#1d2126',
+    fontFamily: 'MontserratBold',
+    fontSize: 15,
+    lineHeight: 20,
+    textAlign: 'center',
+  },
+  modalButton: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    height: 48,
+    width: 100,
+    backgroundColor: '#ff9f1c',
+    borderRadius: 10,
+  },
+  textStyle: {
+    color: '#ffffff',
+    fontFamily: 'MontserratBold',
+    fontSize: 16,
+    lineHeight: 18,
+    textAlign: 'center',
+  },
+  modalCircle: {
+    width: 125,
+    height: 125,
+    borderRadius: 125,
+    backgroundColor: 'white'
   }
 })
 
