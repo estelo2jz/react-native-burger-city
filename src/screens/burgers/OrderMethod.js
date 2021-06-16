@@ -1,4 +1,4 @@
-import React, {useLayoutEffect, useState} from 'react';
+import React, { useLayoutEffect, useState } from 'react';
 import { Text, View, StyleSheet, Alert } from 'react-native';
 
 import Background from '../../components/Background';
@@ -44,15 +44,15 @@ const OrderMethod = ({ navigation, route }) => {
     })
   })
 
-  const _renderItem=(item, index) => {
+  const _renderItem = (item, index) => {
     return (
-      <Text 
+      <Text
         key={item.id}
-        style={{ 
+        style={{
           fontFamily: 'MontserratBold',
           fontSize: 15,
           lineHeight: 20,
-         }}
+        }}
       >
         {item.name}
       </Text>
@@ -62,7 +62,7 @@ const OrderMethod = ({ navigation, route }) => {
   const _onItemClick = (item, index) => {
     let temp = [];
     data.map((entry, idx) => {
-      if (idx ===index) {
+      if (idx === index) {
         entry.selected = true;
         temp.push(entry);
       } else {
@@ -74,23 +74,22 @@ const OrderMethod = ({ navigation, route }) => {
   }
 
   return (
-    <Background>
-      <View style={styles.container}>
-        <Title title='Order Method' subTitle="Please select your order method" />
-        <View style={{ marginTop: 8 }}>
-          <Cell data={data} renderItem={_renderItem} onPress={_onItemClick} />
-        </View>
-        <View style={{ marginLeft: 50, marginRight: 20, marginTop: 40 }}>
-          <Button text="Proceed to Order" onPress={() => navigation.push('DeliveryAddressScreen')} />
-        </View>
+    <View style={styles.container}>
+      <Title title='Order Method' subTitle="Please select your order method" />
+      <View style={{ marginTop: 8 }}>
+        <Cell data={data} renderItem={_renderItem} onPress={_onItemClick} />
       </View>
-    </Background>
+      <View style={{ marginLeft: 50, marginRight: 20, marginTop: 40 }}>
+        <Button text="Proceed to Order" onPress={() => navigation.push('DeliveryAddressScreen')} />
+      </View>
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    // backgroundColor: '#000000'
   }
 })
 
