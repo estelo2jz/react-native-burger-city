@@ -11,7 +11,7 @@ const Button = ({ text, onPress,...params}) => {
 
 const styles = StyleSheet.create({
   container: {
-    width: 315,
+    width: 300,
     height: 48,
     justifyContent: 'center',
     alignItems: 'center',
