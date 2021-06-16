@@ -26,15 +26,13 @@ const DeliveryAddress = ({ navigation, route }) => {
   useLayoutEffect(() => {
     navigation.setOptions({
       headerRight: () => (
-        <HeaderRight 
-          onPress={() => 
-          { navigation.navigate('wallet')} } 
+        <HeaderRight
+          onPress={() => { navigation.navigate('wallet') }}
         />
       ),
       headerLeft: () => (
-        <HeaderBack 
-          onPress={() => 
-            { navigation.goBack()} }
+        <HeaderBack
+          onPress={() => { navigation.goBack() }}
         />
       )
     })
@@ -74,47 +72,45 @@ const DeliveryAddress = ({ navigation, route }) => {
       activated: true,
       text: 'Order Now',
       onPress: () => {
-        
+
       },
     },
     {
       activated: false,
       text: 'Order in Advance',
-      onPress: () => { 
+      onPress: () => {
         navigation.push('DeliveryAddressConfirmedScreen')
       },
     }
   ];
 
   return (
-    <Background>
-      <View style={styles.container}>
-        <Title subTitle="To proceed, please confirm your delivery details" />
-        <GroupButton activeColor={'#ff9f1c'} buttons={buttons}>{buttons}</GroupButton>
-        <Title title="Delivery Address"></Title>
-        <Cell 
-          data={data} 
-          renderItem={_renderItem}
-          onPress={() => Alert.alert('Go to Change Address Screen')}
-        ></Cell>
-        <View style={{ marginLeft: 50, marginRight: 20, marginTop: 100 }}>
-          <Button 
-            text="Proceed to Order (Now)"
-            style={{ backgroundColor: '#000000' }}
-            onPress={
-              () => { navigation.push('MenuScreen') }
-            } 
-          />
-          <Button 
-            text="Change Address" 
-            style={styles.blackBtn}
-            onPress={
-              () => {Alert.alert("hello")}
-            } 
-          />
-        </View>
+    <View style={styles.container}>
+      <Title subTitle="To proceed, please confirm your delivery details" />
+      <GroupButton activeColor={'#ff9f1c'} buttons={buttons}>{buttons}</GroupButton>
+      <Title title="Delivery Address"></Title>
+      <Cell
+        data={data}
+        renderItem={_renderItem}
+        onPress={() => Alert.alert('Go to Change Address Screen')}
+      ></Cell>
+      <View style={{ marginLeft: 50, marginRight: 20, marginTop: 100 }}>
+        <Button
+          text="Proceed to Order (Now)"
+          style={{ backgroundColor: '#000000' }}
+          onPress={
+            () => { navigation.push('MenuScreen') }
+          }
+        />
+        <Button
+          text="Change Address"
+          style={styles.blackBtn}
+          onPress={
+            () => { Alert.alert("hello") }
+          }
+        />
       </View>
-    </Background>
+    </View>
   );
 };
 
