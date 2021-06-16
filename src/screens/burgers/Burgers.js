@@ -113,17 +113,14 @@ const Burgers = ({ params, navigation, route }) => {
   }
 
   return (
-    <Background>
-      <ScrollView style={styles.container}>
-        <Cell
-          style={styles.burgerCell}
-          data={burgers}
-          renderItem={_renderItem}
-          onPress={_onItemClick}
-        ></Cell>
-      </ScrollView>
-    </Background>
-
+    <ScrollView style={styles.container}>
+      <Cell
+        style={styles.burgerCell}
+        data={burgers}
+        renderItem={_renderItem}
+        onPress={_onItemClick}
+      ></Cell>
+    </ScrollView>
   )
 }
 
