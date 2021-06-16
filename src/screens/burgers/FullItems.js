@@ -69,86 +69,84 @@ const FullItems = ({ navigation, route }) => {
   }
 
   return (
-      <Background>
-        <ScrollView style={styles.container}>
-          <View style={styles.summaryView}>
-            <View style={{margin: 20}}>
-              <Text style={styles.title}>Review & Comfirm</Text>
-              <View style={{ alignItems: 'flex-end'}}>
-                <Text style={styles.itemText}>Summary</Text>
-              </View>
-              <View style={styles.itemView}>
-                <Text style={styles.itemText}>Subtotal</Text>
-                <Text style={styles.priceText}>$ 13.99</Text>
-              </View>
-              <View style={styles.itemView}>
-                <Text style={styles.itemText}>Delivery Charge</Text>
-                <Text style={styles.priceText}>$ 4.99</Text>
-              </View>
-              <View style={styles.itemView}>
-                <Text style={styles.itemText}>Promo Code Discount</Text>
-                <Text style={styles.priceText}>$ 1.99</Text>
-              </View>
-            </View>
+    <ScrollView style={styles.container}>
+      <View style={styles.summaryView}>
+        <View style={{ margin: 20 }}>
+          <Text style={styles.title}>Review & Comfirm</Text>
+          <View style={{ alignItems: 'flex-end' }}>
+            <Text style={styles.itemText}>Summary</Text>
           </View>
-
-          <View style={styles.totalView}>
-            <View style={{margin: 20}}>
-              <View style={styles.itemView}>
-                <Text style={styles.itemText}>Total</Text>
-                <Text style={[styles.priceText, {fontSize: 18}]}>$ 19.99</Text>
-              </View>
-              <View style={{alignItems: 'flex-end'}}>
-                <Text style={[styles.itemText, {color: '#ffffff', fontSize: 12,}]}>Total (Includes TAX)</Text>
-              </View>
-            </View>
+          <View style={styles.itemView}>
+            <Text style={styles.itemText}>Subtotal</Text>
+            <Text style={styles.priceText}>$ 13.99</Text>
           </View>
-
-          <View style={{paddingTop: 18}}></View>
-
-          <View style={styles.addressView}>
-            <View style={{margin: 20,}}>
-              <Text style={styles.title}>Delivery By</Text>
-              <Text style={styles.itemText}>19 / 20 / 2021 02:30:00 PM</Text>
-              <Text style={[styles.itemText, {color: '#ffffff'}]}>4202 Hickory Hills Dr, 212</Text>
-            </View>
+          <View style={styles.itemView}>
+            <Text style={styles.itemText}>Delivery Charge</Text>
+            <Text style={styles.priceText}>$ 4.99</Text>
           </View>
+          <View style={styles.itemView}>
+            <Text style={styles.itemText}>Promo Code Discount</Text>
+            <Text style={styles.priceText}>$ 1.99</Text>
+          </View>
+        </View>
+      </View>
 
-          <Title
-            title="Remarks"
-          />
-          <View style={{ marginTop: 8 }}>
-            <Cell
-              data={remarks}
-              renderItem={_renderItem}
-              onPress={_onItemClick}
-            />
-            {/* <TextInput
+      <View style={styles.totalView}>
+        <View style={{ margin: 20 }}>
+          <View style={styles.itemView}>
+            <Text style={styles.itemText}>Total</Text>
+            <Text style={[styles.priceText, { fontSize: 18 }]}>$ 19.99</Text>
+          </View>
+          <View style={{ alignItems: 'flex-end' }}>
+            <Text style={[styles.itemText, { color: '#ffffff', fontSize: 12, }]}>Total (Includes TAX)</Text>
+          </View>
+        </View>
+      </View>
+
+      <View style={{ paddingTop: 18 }}></View>
+
+      <View style={styles.addressView}>
+        <View style={{ margin: 20, }}>
+          <Text style={styles.title}>Delivery By</Text>
+          <Text style={styles.itemText}>19 / 20 / 2021 02:30:00 PM</Text>
+          <Text style={[styles.itemText, { color: '#ffffff' }]}>4202 Hickory Hills Dr, 212</Text>
+        </View>
+      </View>
+
+      <Title
+        title="Remarks"
+      />
+      <View style={{ marginTop: 8 }}>
+        <Cell
+          data={remarks}
+          renderItem={_renderItem}
+          onPress={_onItemClick}
+        />
+        {/* <TextInput
               style={styles.input}
               value={text}
               onChangeText={onChangeText}
               placeholder="Enter your promo code"
               keyboardType="numeric"
             /> */}
-          </View>
+      </View>
 
-          <Card />
+      <Card />
 
-          <Title
-            title="Condiments"
-          />
-          <View style={{ marginTop: 8 }}>
-            <Cell
-              data={condiments}
-              renderItem={_renderItem}
-              onPress={_onItemClick}
-            />
-          </View>
-          <View style={{ marginLeft: 20, marginRight: 20, marginTop: 20, marginBottom: 20, justifyContent: 'center', alignItems: 'center' }}>
-           <Button text="Confirm" onPress={() => { navigation.navigate('Payment')}} />
-          </View>
-        </ScrollView>
-      </Background>
+      <Title
+        title="Condiments"
+      />
+      <View style={{ marginTop: 8 }}>
+        <Cell
+          data={condiments}
+          renderItem={_renderItem}
+          onPress={_onItemClick}
+        />
+      </View>
+      <View style={{ marginLeft: 20, marginRight: 20, marginTop: 20, marginBottom: 20, justifyContent: 'center', alignItems: 'center' }}>
+        <Button text="Confirm" onPress={() => { navigation.navigate('Payment') }} />
+      </View>
+    </ScrollView>
   );
 };
 
