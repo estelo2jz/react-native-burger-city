@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 
 import { View, StyleSheet, TouchableOpacity, Text, Image, Dimensions } from 'react-native';
+import Modal from 'react-native-modal';
+import haversine from 'haversine';
 
 import Button from '../../components/Button';
 
-import MapView from 'react-native-maps';
+import MapView, { Marker, Polyline, PROVIDER_GOOGLE } from 'react-native-maps';
 import carImage from '../../../assets/images/car64.png';
 
 // const {width, height} = Dimensions.get('window');
@@ -13,13 +15,13 @@ const screen = Dimensions.get('window');
 const ASPECT_RATIO = screen.width / screen.height;
 const LATITUDE = 37.78817;
 const LONGITUDE = -122.3903973;
-const LATITUDE_DELTA = 0.05;
-const LONGITUDE_DELTA = LATITUDE_DELTA = ASPECT_RATIO;
-const TARGET_LATITUDE = 37.7681862;
+const LATITUDE_DELTA = 0.005;
+const LONGITUDE_DELTA = LATITUDE_DELTA * ASPECT_RATIO;
+const TARGET_LATITUDE = 37.7861862;
 const TARGET_LONGITUDE = -122.3897073;
 const TARGET_COORDINATE = {
-  latitude: LATITUDE,
-  longitude: LONGITUDE,
+  latitude: TARGET_LATITUDE,
+  longitude: TARGET_LONGITUDE,
   latitudeDelta: LATITUDE_DELTA,
   longitudeDelta: LONGITUDE_DELTA,
 }
@@ -29,14 +31,61 @@ export default class NavigationMap extends Component {
     super(props);
     this.state = {
       prevPos: null,
-      curPos: { latitude: 37.420814, longitude: -122.081949 },
+      curPos: { latitude: LATITUDE, longitude: LONGITUDE },
       curAng: 45,
-      latitudeDelta: 0.0922,
-      longitudeDelta: 0.0421,
+      latitudeDelta: LATITUDE_DELTA,
+      longitudeDelta: LONGITUDE_DELTA,
+      initialRegion: {
+        latitude: LATITUDE - 0.001,
+        longitude: LONGITUDE,
+        latitudeDelta: LATITUDE_DELTA,
+        longitudeDelta: LONGITUDE_DELTA,
+      },
+      carRot: '45deg',
+      carStep1: 0,
+      carStep2: 0,
+      routeCoordinates: [],
+      distance: 0.56,
+      modalVisible: false
     };
     this.changePosition = this.changePosition.bind(this);
     this.getRotation = this.getRotation.bind(this);
     this.updateMap = this.updateMap.bind(this);
+  }
+
+  // use the timer to simulate the navigation
+  simulationNavigation() {
+    this.interval = setInterval(() => {
+      this.changePosition(-0.0001 / 10, -0.00012 / 10)
+      this.setState({carStep1: this.state.carStep1 + 1});
+
+      if (this.state.carStep1 === 70) {
+        clearInterval(this.interval);
+        this.setState({carStep1: 0})
+      }
+    }, 100)
+
+    //  turn left then
+    this.interval2 = setInterval(() => {
+      this.setState({ carStep2: this.state.carStep2 + 1 });
+
+      if (this.state.carStep2 >= 90) {
+         // turn left
+        this.setState({carRot: '-40deg'})
+        this.changePosition(-0.0001 / 10, +0.000135 / 10)
+      }
+
+      if (this.state.carStep2 === 200) {
+        clearInterval(this.interval2);
+        this.setState({ carStep2: 0 })
+        this.setState({modalVisible: true})
+      }
+    }, 100)
+  }
+
+  calcDistance = (newLatLng) => {
+      const {prevPos} = this.state;
+      return prevPos ? haversine( prevPos, newLatLng) : 0;
   }
 
   changePosition(latOffset, lonOffset) {
@@ -45,8 +94,10 @@ export default class NavigationMap extends Component {
     this.setState({
       prevPos: this.state.curPos,
       curPos: { latitude, longitude },
+      routeCoordinates: this.state.routeCoordinates.concat([{ latitude, longitude }]),
+      distance: this.state.distance - this.calcDistance({latitude, longitude}),
     });
-    this.updateMap();
+    // this.updateMap();
   }
 
   getRotation(prevPos, curPos) {
@@ -68,20 +119,26 @@ export default class NavigationMap extends Component {
     return (
       <View style={styles.flex}>
         <MapView
+        provider={PROVIDER_GOOGLE}
           ref={el => (this.map = el)}
           style={styles.flex}
           minZoomLevel={15}
           initialRegion={{
-            ...this.state.curPos,
-            latitudeDelta: this.state.latitudeDelta,
-            longitudeDelta: this.state.longitudeDelta,
+            ...this.state.initialRegion
           }}
         >
           <MapView.Marker
             coordinate={this.state.curPos}
-            anchor={{ x: 0.5, y: 0.5 }}
-            image={carImage}
-          />
+            anchor={{ x: 0.28, y: 0.5 }}
+          >
+            <Image source={require("../../../assets/images/car2-64.png")} style={{transform: [{rotate: this.state.carRot}]}} />
+          </MapView.Marker>
+          <Marker
+            coordinate={TARGET_COORDINATE}
+          >
+            <Image source={require("../../../assets/images/location32.png")} />
+          </Marker>
+          <Polyline coordinates={this.state.routeCoordinates} strokeWidth={8} strokeColor={'#ff9f1c'} />
         </MapView>
         <View style={styles.buttonContainerLeftRight}>
 
@@ -126,13 +183,15 @@ export default class NavigationMap extends Component {
             alignItems: 'center',
             backgroundColor: '#ffffff'
           }}>
-            <Text style={{ fontFamily: 'MontserratBold', fontSize: 18, color: 'orange'}}>0 km</Text>
+            <Text style={{ fontFamily: 'MontserratBold', fontSize: 18, color: 'orange'}}>
+              {parseFloat(this.state.distance).toFixed(2) > 0? parseFloat(this.state.distance).toFixed(2) : 0 } km
+            </Text>
           </View>
         </View>
 
         <View style={styles.buttonContainerUpDown}>
           <View style={{ flex: 1, justifyContent: 'flex-end', marginLeft: 55, marginRight: 20, marginBottom: 20 }}>
-            <Button text="Track Your Order"></Button>
+            <Button text="Track Your Order" onPress={() => {this.simulationNavigation()}}></Button>
           </View>
 
           {/* <TouchableOpacity
@@ -148,6 +207,27 @@ export default class NavigationMap extends Component {
             <Text>- Lat</Text>
           </TouchableOpacity> */}
         </View>
+        <Modal visible={this.state.modalVisible} animationType="slide" transparent={true}>
+          <View style={styles.centeredView}>
+            <View style={{ height: 30 }}>
+              <View style={styles.modalCircle}></View>
+            </View>
+            <View style={styles.modalView}>
+              <View style={styles.modalView2}>
+                <Image style={{ margin: 20 }} source={require('../../../assets/images/burger24.png')} />
+                <Text style={styles.modalTitle}>Your Burger has arrived!</Text>
+                <View style={{ marginLeft: 40, marginRight: 40, marginBottom: 20, marginTop: 10 }}>
+                  <Text style={styles.modalDesc}>Thanks for choosing Burger-Joint, Your 420 friendly Joint</Text>
+                </View>
+                <TouchableOpacity style={styles.modalButton} onPress={() => {
+                  this.setState({modalVisible: false});
+                }}>
+                  <Text style={styles.textStyle}>OK</Text>
+                </TouchableOpacity>
+              </View>
+            </View>
+          </View>
+        </Modal>
       </View>
     );
   }
@@ -189,4 +269,63 @@ const styles = StyleSheet.create({
   right: {
     alignSelf: 'flex-end',
   },
+  centeredView: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: 22,
+  },
+  modalView: {
+    margin: 20,
+    backgroundColor: 'transparent',
+    borderRadius: 10,
+    alignItems: 'center',
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 5,
+  },
+  modalView2: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: 'white',
+    borderRadius: 10,
+    paddingBottom: 40,
+  },
+  modalTitle: {
+    marginTop: 20,
+    color: '#ff9f1c',
+    fontFamily: 'MontserratBold',
+    fontSize: 15,
+    lineHeight: 18,
+  },
+  modalDesc: {
+    color: '#1d2126',
+    fontFamily: 'MontserratBold',
+    fontSize: 18,
+    lineHeight: 20,
+    textAlign: 'center',
+  },
+  modalButton: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    height: 48,
+    width: 100,
+    backgroundColor: '#ff9f1c',
+    borderRadius: 10,
+  },
+  textStyle: {
+    color: '#ffffff',
+    fontFamily: 'MontserratBold',
+    fontSize: 16,
+    lineHeight: 18,
+    textAlign: 'center',
+  },
+  modalCircle: {
+    width: 125,
+    height: 125,
+    borderRadius: 125,
+    backgroundColor: 'white'
+  }
 });
