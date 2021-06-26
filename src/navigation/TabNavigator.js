@@ -78,7 +78,7 @@ const TabNavigator = ({ params }) => {
           ),
         }}
       ></Tab.Screen>
-      <Tab.Screen name="wallet" component={WalletStack}
+      <Tab.Screen name="Wallet" component={WalletStack}
         options={{
           tabBarLabel: 'Wallet',
           tabBarIcon: ({ focused, color, size }) => (
