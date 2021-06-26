@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, Image, StyleSheet, Dimensions, Alert } from 'react-native';
+import { View, Text, Image, StyleSheet, Dimensions, Alert, StatusBar } from 'react-native';
 
 import Button from '../components/Button';
 
@@ -20,12 +20,13 @@ class Onboarding extends Component {
   }
 
   _btnClick = () => {
-    Alert.alert('Get start here!');
+    this.props.navigation.navigate("Login");
   }
 
   render() {
     return (
       <View style={styles.container}>
+        <StatusBar barStyle={'light-content'} />
         <Swiper
           autoplay={true}
           dot={<View style={styles.dot} />}

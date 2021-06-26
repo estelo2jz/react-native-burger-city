@@ -1,6 +1,6 @@
 import { setStatusBarNetworkActivityIndicatorVisible } from 'expo-status-bar';
 import React from 'react';
-import {Text, View, StyleSheet, Image, ImageBackground, Dimensions} from 'react-native';
+import {Text, View, StyleSheet, Image, ImageBackground, Dimensions, TouchableOpacity, StatusBar} from 'react-native';
 import { RadioGroup, RadioButton } from 'react-native-flexi-radio-button';
 
 import Input from '../components/Input';
@@ -13,9 +13,10 @@ const tip = ' Login to continue Burger Joint';
 const signup = 'New user? Sign up';
 const terms = 'By signing up you indicate that you have read and agreed to the Patch Terms of Service'
 
-const Login = ({params}) => {
+const Login = ({navigation}) => {
   return (
     <View style={styles.container}>
+      <StatusBar barStyle={'light-content'} />
       <ImageBackground
         source={require('../../assets/images/burger1.jpeg')}
         style={{width: width, height: height}}
@@ -52,12 +53,23 @@ const Login = ({params}) => {
               </RadioButton>
             </RadioGroup>
           </View>
-          <View style={{}}>
+          <TouchableOpacity 
+            style={{}}
+            onPress={() => navigation.navigate('ForgetPassword')}
+          >
             <Text style={styles.forgot}>Forgot password?</Text>
-          </View>
+          </TouchableOpacity>
         </View>
         <View style={{ marginTop: 37, justifyContent: 'center', alignItems: 'center' }}>
-          <Button text="Login" />
+          <Button 
+            style={{
+              marginTop: 37,
+              marginLeft: 30,
+              marginRight: 30
+            }}
+            text="Login" 
+            onPress={() => navigation.navigate('Home') }
+          />
         </View>
         <View style={styles.signup}>
           <Text style={styles.signupText}>{signup}</Text>

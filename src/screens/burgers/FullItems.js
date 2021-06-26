@@ -144,7 +144,7 @@ const FullItems = ({ navigation, route }) => {
         />
       </View>
       <View style={{ marginLeft: 20, marginRight: 20, marginTop: 20, marginBottom: 20, justifyContent: 'center', alignItems: 'center' }}>
-        <Button text="Confirm" onPress={() => { navigation.navigate('Payment') }} />
+        <Button text="Confirm" onPress={() => { navigation.navigate('Wallet') }} />
       </View>
     </ScrollView>
   );

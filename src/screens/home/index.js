@@ -13,8 +13,9 @@ const HomeScreen = ({ navigation, route }) => {
 
   useLayoutEffect(() => {
     navigation.setOptions({
-      headerRight: () => <HeaderRight onPress={() => { navigation.navigate('wallet') }} />,
-      headerLeft: () => (<HeaderLanguageChange onPress={() => (Alert.alert('Do something'))} />)
+      // test for navittion to settings
+      headerRight: () => <HeaderRight onPress={() => { navigation.navigate('Settings') }} />,
+      headerLeft: () => (<HeaderLanguageChange onPress={() => (Alert.alert('Language Change'))} />)
     })
   })
 

@@ -1,6 +1,6 @@
 import { setStatusBarNetworkActivityIndicatorVisible } from 'expo-status-bar';
 import React from 'react';
-import { Text, View, StyleSheet, Image, ImageBackground, Dimensions } from 'react-native';
+import { Text, View, StyleSheet, Image, ImageBackground, Dimensions, StatusBar } from 'react-native';
 import { RadioGroup, RadioButton } from 'react-native-flexi-radio-button';
 
 import Input from '../components/Input';
@@ -13,9 +13,10 @@ const tip = 'Please enter a new password and confirm the password';
 const signup = 'New user? Sign up';
 const terms = 'By signing up you indicate that you have read and agreed to the Patch Terms of Service'
 
-const ForgetPassword = ({ params }) => {
+const ForgetPassword = ({ navigation }) => {
   return (
     <View style={styles.container}>
+      <StatusBar barStyle={'light-content'} />
       <ImageBackground
         source={require('../../assets/images/burger1.jpeg')}
         style={{ width: width, height: height }}
@@ -45,7 +46,10 @@ const ForgetPassword = ({ params }) => {
           />
         </View>
         <View style={{ marginTop: 37, justifyContent: 'center', alignItems: 'center' }}>
-          <Button text="Login" />
+          <Button 
+            text="Submit" 
+            onPress={() => navigation.navigate('Login')}
+          />
         </View>
       </ImageBackground>
     </View>
