@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { ActivityIndicator, StyleSheet, Text, View } from 'react-native';
 
 import { NavigationContainer } from '@react-navigation/native';
+import {createSwitchNavigator} from '@react-navigation/compat';
 import TabNavigator from './src/navigation/TabNavigator';
 
 import Onboarding from './src/screens/Onboarding';
@@ -10,6 +11,7 @@ import Login from './src/screens/Login';
 import ForgetPassword from './src/screens/ForgetPassword';
 import Otp from './src/screens/Otp';
 import MobileNumber from './src/screens/MobileNumber';
+import SettingsStack from './src/navigation/SettingsStack';
 
 import HomeScreen from './src/screens/home';
 
@@ -19,6 +21,18 @@ const customFonts = {
   'MontserratBold': require('./assets/fonts/Montserrat-Bold.ttf'),
   'MontserratRegular': require('./assets/fonts/Montserrat-Regular.ttf'),
 }
+
+const AppNavigator = createSwitchNavigator({
+  Onboarding: { screen: Onboarding },
+  Login: {screen:Login},
+  ForgetPassword: {screen:ForgetPassword},
+  Otp: {screen:Otp},
+  MobileNumber: { screen: MobileNumber },
+  Settings: SettingsStack,
+  Home: TabNavigator
+}, {
+  initialRouteName: 'Onboarding'
+})
 
 export default function App() {
   const [assetsLoaded, setAssetsLoaded] = useState(false);
@@ -34,7 +48,7 @@ export default function App() {
   return assetsLoaded ? (
     <NavigationContainer>
       <StatusBar />
-      <TabNavigator />
+      <AppNavigator />
     </NavigationContainer>
   ) : (
     <ActivityIndicator size="small" />
